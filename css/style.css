@@ -157,6 +157,7 @@ main {
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+  z-index: 50;
 }
 
 .dropdown button.fake span:nth-child(1) {
@@ -287,6 +288,8 @@ main {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
   height: 100%;
+  -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
 }
 
 .card__side {
@@ -310,7 +313,16 @@ main {
   font-size: 24px;
 }
 
+.card__side--face {
+  z-index: 5;
+}
+
 .card__side--back {
+  -webkit-transform: rotateX(180deg);
+          transform: rotateX(180deg);
+}
+
+.card.active {
   -webkit-transform: rotateX(180deg);
           transform: rotateX(180deg);
 }
@@ -358,16 +370,16 @@ main {
   padding: 10px;
   font-family: "Montserrat", sans-serif;
   font-size: 18px;
+  box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.15);
-          box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.15);
   border: 0;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
 .popup textarea.empty {
+  box-shadow: 0 5px 10px 0px rgba(206, 0, 0, 0.35);
   -webkit-box-shadow: 0 5px 10px 0px rgba(206, 0, 0, 0.35);
-          box-shadow: 0 5px 10px 0px rgba(206, 0, 0, 0.35);
 }
 
 .popup__btn {

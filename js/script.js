@@ -32,15 +32,19 @@ slider.on( 'pagination:updated', function () {
   }
 } );
 
+const cardRotateClassToggle = (e) => {
+  e.target.parentElement.classList.toggle('active');
+}
+
 function cardRotate() {
   document.querySelectorAll(".card").forEach((el) => {
-    el.addEventListener("click", () => {
-      if (el.style.transform == "rotateX(0deg)" || !el.style.transform) {
-        el.style.transform = "rotateX(180deg)";
-      } else {
-        el.style.transform = "rotateX(0deg)";
-      }
-    });
+    el.addEventListener("click", cardRotateClassToggle);
+  });
+}
+
+function cardRotateStop() {
+  document.querySelectorAll(".card").forEach((el) => {
+    el.removeEventListener("click", cardRotateClassToggle);
   });
 }
 
@@ -141,5 +145,6 @@ popupBtn.addEventListener("click", () => {
       textareaAnswerEl.classList.remove("empty");
     }, 3000);
   }
+  cardRotateStop();
   cardRotate();
 });
