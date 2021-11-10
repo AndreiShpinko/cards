@@ -315,11 +315,14 @@ main {
   transition: 1s;
 }
 
+.card__side--face {
+  opacity: 1;
+}
+
 .card__side--back {
+  opacity: 0;
   -webkit-transform: rotateX(180deg);
           transform: rotateX(180deg);
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
 }
 
 .card.active {
@@ -329,6 +332,10 @@ main {
 
 .card.active .card__side--face {
   opacity: 0;
+}
+
+.card.active .card__side--back {
+  opacity: 1;
 }
 
 .popup {
