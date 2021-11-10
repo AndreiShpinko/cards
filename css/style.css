@@ -311,6 +311,8 @@ main {
   background-color: white;
   border-radius: 20px;
   font-size: 24px;
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 
 .card__side--back {
@@ -323,6 +325,10 @@ main {
 .card.active {
   -webkit-transform: rotateX(180deg);
           transform: rotateX(180deg);
+}
+
+.card.active .card__side--face {
+  opacity: 0;
 }
 
 .popup {
