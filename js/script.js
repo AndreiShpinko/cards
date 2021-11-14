@@ -10,6 +10,8 @@ let popupBuffer = document.querySelector(".popup-buffer");
 let textareaQuestionEl = document.querySelector("textarea#question");
 let textareaAnswerEl = document.querySelector("textarea#answer");
 
+
+// Slider START *************************************
 let slider = new Splide(".splide", {
   type: "fade",
   speed: 1000,
@@ -31,6 +33,7 @@ slider.on( 'pagination:updated', function () {
     document.querySelector('.splide__pagination').style.display = '';
   }
 } );
+// Slider END ***************************************
 
 const cardRotateClassToggle = (e) => {
   e.target.parentElement.classList.toggle('active');
@@ -65,12 +68,32 @@ function checkInfo() {
   `${+document.querySelectorAll('.splide__slide').length}`;
 }
 
+// Interactive card
+function interactiveCards () {
+  const {width, height} = document.querySelector('body').getBoundingClientRect();
+  document.querySelectorAll('.card').forEach((el) => {
+    el.addEventListener('mousemove', (e) => {
+      const { clientX, clientY} = e;
+    
+      el.style.setProperty('--cardXPos', (((clientX / width) - 0.5) * 100).toFixed(2) + 'deg');
+      el.style.setProperty('--cardYPos', -1 * ((((clientY / height) - 0.5) * 100).toFixed(2) - 11) + 'deg');
+    });
+    el.addEventListener('mouseleave', (e) => {
+      const { clientX, clientY} = e;
+      
+      el.style.setProperty('--cardXPos', '0deg');
+      el.style.setProperty('--cardYPos', '0deg');
+    });
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   if (document.querySelectorAll('.splide__slide').length > 39) {
     document.querySelector('.splide__pagination').style.display = 'none';
   }
   cardRotate();
   checkInfo();
+  interactiveCards();
 });
 
 // *******************************************************************
@@ -109,6 +132,7 @@ popupBuffer.addEventListener("click", () => {
 });
 
 fakeBtn.addEventListener("click", () => {
+  fakeBtn.cl
   document.querySelector('.dropdown').classList.toggle("active");
   document.querySelector('.back-shadow').classList.toggle("active");
 });
@@ -125,6 +149,7 @@ popupBtn.addEventListener("click", () => {
       slider.add(text);
       if (removeBtn.disabled == true) removeBtn.disabled = false;
       checkInfo();
+      interactiveCards();
       popupClose();
     }
     else if (popupEl.dataset.status == 'edit') {
@@ -147,4 +172,11 @@ popupBtn.addEventListener("click", () => {
   }
   cardRotateStop();
   cardRotate();
+});
+
+document.querySelector(".splide__list").addEventListener("mousedown", (e) => {
+  document.querySelector(".splide__list").classList.add("click");
+});
+document.querySelector(".splide__list").addEventListener("mouseup", (e) => {
+  document.querySelector(".splide__list").classList.remove("click");
 });

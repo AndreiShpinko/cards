@@ -128,7 +128,7 @@ main {
   font-size: 26px;
 }
 
-.dropdown button {
+.dropdown .btn {
   background-color: rgba(255, 255, 255, 0.9);
   -webkit-box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2);
@@ -140,36 +140,38 @@ main {
   margin: 0 10px;
 }
 
-.dropdown button.fake {
+.dropdown .btn.fake {
   display: none;
 }
 
-.dropdown button.fake span {
+.dropdown .btn.fake span {
   display: inline-block;
   width: 6px;
   height: 6px;
-  border-radius: 50%;
+  border-radius: 10px;
   background-color: #000;
   position: absolute;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   z-index: 50;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
-.dropdown button.fake span:nth-child(1) {
+.dropdown .btn.fake span:nth-child(1) {
   left: 30%;
 }
 
-.dropdown button.fake span:nth-child(2) {
+.dropdown .btn.fake span:nth-child(2) {
   left: 50%;
 }
 
-.dropdown button.fake span:nth-child(3) {
+.dropdown .btn.fake span:nth-child(3) {
   left: 70%;
 }
 
-.dropdown button img {
+.dropdown .btn img {
   position: relative;
   z-index: 100;
   -o-object-fit: contain;
@@ -205,6 +207,16 @@ main {
 .splide__track {
   height: 100%;
   overflow: visible;
+}
+
+.splide__list {
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.splide__list.click {
+  -webkit-transform: scale(1.04);
+          transform: scale(1.04);
 }
 
 .splide__slide {
@@ -244,6 +256,14 @@ main {
 
 .splide__pagination {
   bottom: -30px;
+}
+
+.splide__pagination button {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.splide__pagination button.is-active {
+  background-color: rgba(180, 0, 174, 0.8);
 }
 
 .btn {
@@ -287,6 +307,7 @@ main {
   height: 100%;
   -webkit-transform: rotateX(0deg);
           transform: rotateX(0deg);
+  cursor: pointer;
 }
 
 .card__side {
@@ -431,6 +452,16 @@ main {
     top: 0px;
     left: 0px;
   }
+  .card {
+    --cardXPos: 0;
+    --cardYPos: 0;
+    -webkit-transform: rotateX(var(--cardYPos)) rotateY(var(--cardXPos));
+            transform: rotateX(var(--cardYPos)) rotateY(var(--cardXPos));
+  }
+  .card.active {
+    -webkit-transform: rotateX(calc(-1 * (180deg + var(--cardYPos)))) rotateY(var(--cardXPos));
+            transform: rotateX(calc(-1 * (180deg + var(--cardYPos)))) rotateY(var(--cardXPos));
+  }
 }
 
 @media screen and (max-width: 1400px) {
@@ -460,16 +491,6 @@ main {
   .title {
     font-size: 56px;
   }
-  .dropdown button {
-    margin: 0;
-    width: 70px;
-    height: 70px;
-  }
-  .dropdown button.fake {
-    display: inline-block;
-    position: relative;
-    z-index: 200;
-  }
   .dropdown .btns {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -486,7 +507,17 @@ main {
     transition: 0.5s;
   }
   .dropdown .btns .btn {
-    margin-top: -100%;
+    margin: -100% 0 0 0;
+  }
+  .dropdown .btn {
+    width: 70px;
+    height: 70px;
+  }
+  .dropdown .btn.fake {
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    z-index: 200;
   }
   .dropdown.active .btns {
     margin-top: 10px;
@@ -495,6 +526,20 @@ main {
   }
   .dropdown.active .btns .btn {
     margin-top: 10px;
+  }
+  .dropdown.active .fake {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+  .dropdown.active .fake span:nth-child(1) {
+    left: 50%;
+    width: 60%;
+  }
+  .dropdown.active .fake span:nth-child(2) {
+    height: 60%;
+  }
+  .dropdown.active .fake span:nth-child(3) {
+    opacity: 0;
   }
   .cards {
     max-width: 500px;
