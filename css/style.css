@@ -588,7 +588,7 @@ main {
             order: 3;
     width: 100%;
   }
-  .btns button,
+  .btns .btn,
   .btn.fake {
     width: 50px;
     height: 50px;
